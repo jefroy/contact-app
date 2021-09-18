@@ -4,7 +4,6 @@ import { Header, Icon, Divider, Card } from 'semantic-ui-react';
 const HeaderCM = () => {
     return (
         <div>
-            <Divider/>
             <Header as='h2' icon textAlign='center'>
                 <Icon name='users' circular />
                 <Header.Content>Contact Manager</Header.Content>
