@@ -1,15 +1,20 @@
 import React from 'react';
-import {Button, Checkbox, Form, Container, Card} from 'semantic-ui-react';
-import {logDOM} from "@testing-library/react";
+import { Form, Container } from 'semantic-ui-react';
 
 class AddContact extends React.Component{
-    state = { name: '', email: '', submittedName: '', submittedEmail: '' }
+    state = {
+        name: '', email: '', img: '',
+        submittedName: '', submittedEmail: '', submittedImg: ''
+    }
 
     handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
     handleSubmit = () => {
-        const { name, email } = this.state
-        this.setState({ submittedName: name, submittedEmail: email })
+        this.state.img = 'https://react.semantic-ui.com/images/avatar/large/steve.jpg';
+        const { name, email, img } = this.state
+        this.setState({ submittedName: name, submittedEmail: email , submittedImg: img })
+        this.props.addContactHandler(this.state);
+        this.setState({submittedName:"", submittedEmail: "", name: "", email: "", img: ""})
     }
 
     render() {
@@ -18,14 +23,14 @@ class AddContact extends React.Component{
                 <Container textAlign='center'>
                     <h2>Add Contact</h2>
                     {this.printForm()}
-                    {console.log(this.state)}
+                    {/*{console.log(this.state)}*/}
                 </Container>
             </div>
         );
     }
 
     printForm(){
-        const { name, email, submittedName, submittedEmail } = this.state
+        const { name, email, img } = this.state
         return(
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group unstackable widths={2}>
@@ -34,6 +39,8 @@ class AddContact extends React.Component{
                         placeholder='Name'
                         name='name'
                         value={name}
+                        type={'text'}
+                        required
                         onChange={this.handleChange}
                     />
                     <Form.Input
@@ -41,10 +48,12 @@ class AddContact extends React.Component{
                         placeholder='Email'
                         name='email'
                         value={email}
+                        required
+                        type={'email'}
                         onChange={this.handleChange}
                     />
                 </Form.Group>
-                <Form.Button content='Submit' />
+                <Form.Button content='Add Contact' />
             </Form>
             // <strong>onChange:</strong>
             // <pre>{JSON.stringify({ name, email }, null, 2)}</pre>
