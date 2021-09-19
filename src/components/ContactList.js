@@ -1,6 +1,7 @@
 import React from 'react';
-import {List} from "semantic-ui-react";
+import {Button, Header, List} from "semantic-ui-react";
 import ContactCard from "./ContactCard";
+import {Link} from "react-router-dom";
 
 const ContactList = (props) => {
 
@@ -18,6 +19,10 @@ const ContactList = (props) => {
 
     return(
         <div>
+            <Header as='h2' icon textAlign='center'>
+                Contact List
+            </Header>
+            <Link to={"/add"}><Button positive>Add Contact +</Button></Link>
             <List divided verticalAlign='middle'>
                 {renderContactList}
             </List>

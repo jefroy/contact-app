@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useDebugValue} from 'react';
 import HeaderCM from "./HeaderCM";
 import AddContact from "./AddContact";
 import {Container, Divider, Segment} from "semantic-ui-react";
 import ContactList from "./ContactList";
 import {useState, useEffect} from "react";
 import {uuid} from 'uuidv4';
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 function App() {
     const LOCAL_STORAGE_KEY = "contacts";
@@ -30,15 +31,36 @@ function App() {
         })
         setContacts(newContactList);
     }
-
+    
     return (
         <div>
             <Container>
                 <Segment inverted color={'grey'}>
-                    <HeaderCM/>
-                    <AddContact addContactHandler={addContactHandler}/>
-                    <Divider/>
-                    <ContactList contacts={contacts} getContactId={removeContactHandler}/>
+                    <Router>
+                        <HeaderCM/>
+                        <Switch>
+                            <Route
+                                path={"/"} exact
+                                render={(props) => (
+                                    <ContactList
+                                        {...props}
+                                        contacts={contacts}
+                                        getContactId={removeContactHandler}
+                                    />
+                                )}
+                            />
+                            <Route
+                                path={"/add"} exact
+                                render={(props) => (
+                                    <AddContact
+                                        {...props}
+                                        addContactHandler={addContactHandler}
+                                    />
+                                )}
+                            />
+                        </Switch>
+                        <Divider/>
+                    </Router>
                 </Segment>
             </Container>
         </div>
