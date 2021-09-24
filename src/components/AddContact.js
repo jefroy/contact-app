@@ -15,6 +15,7 @@ class AddContact extends React.Component{
         this.setState({ submittedName: name, submittedEmail: email , submittedImg: img })
         this.props.addContactHandler(this.state);
         this.setState({submittedName:"", submittedEmail: "", name: "", email: "", img: ""})
+        this.props.history.push("/");
     }
 
     render() {
@@ -55,10 +56,6 @@ class AddContact extends React.Component{
                 </Form.Group>
                 <Form.Button content='Add Contact' />
             </Form>
-            // <strong>onChange:</strong>
-            // <pre>{JSON.stringify({ name, email }, null, 2)}</pre>
-            // <strong>onSubmit:</strong>
-            // <pre>{JSON.stringify({ submittedName, submittedEmail }, null, 2)}</pre>
         );
     }
 
