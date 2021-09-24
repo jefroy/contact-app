@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react'
+import {Button, Card, Icon, Image} from 'semantic-ui-react'
+import {Link} from "react-router-dom";
 
 const ContactDetail = (props) => {
     console.log(props);
@@ -26,6 +27,8 @@ const ContactDetail = (props) => {
                     </Card.Content>
                 </Card>
             </div>
+            <Link to={'/'}><Button color={'instagram'}>Back to Home</Button></Link>
+
         </div>
     );
 }
