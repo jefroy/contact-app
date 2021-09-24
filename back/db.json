@@ -1,0 +1,16 @@
+{
+    "contacts": [
+        {
+          "id": "8d06605e-c507-4591-9a82-19166f94bfc5",
+          "name": "Jon",
+          "email": "asda@Adsad",
+          "avatar": "https://react.semantic-ui.com/images/avatar/large/christian.jpg"
+        },
+        {
+          "id": "a944520b-a707-4067-83c5-c8f1c4642903",
+          "name": "Harry",
+          "email": "asd@asdasd",
+          "avatar": "https://react.semantic-ui.com/images/avatar/large/steve.jpg"
+        }
+    ]
+}
