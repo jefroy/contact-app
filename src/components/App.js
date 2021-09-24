@@ -6,6 +6,7 @@ import ContactList from "./ContactList";
 import {useState, useEffect} from "react";
 import {uuid} from 'uuidv4';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import ContactDetail from "./ContactDetail";
 
 function App() {
     const LOCAL_STORAGE_KEY = "contacts";
@@ -50,13 +51,17 @@ function App() {
                                 )}
                             />
                             <Route
-                                path={"/add"} exact
+                                path={"/add"}
                                 render={(props) => (
                                     <AddContact
                                         {...props}
                                         addContactHandler={addContactHandler}
                                     />
                                 )}
+                            />
+                            <Route
+                                path={"/contact/:id"}
+                                component={ContactDetail}
                             />
                         </Switch>
                         <Divider/>
