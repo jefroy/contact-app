@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Header, List} from "semantic-ui-react";
 import ContactCard from "./ContactCard";
 import {Link} from "react-router-dom";
+import SearchCM from "./SearchCM";
 
 const ContactList = (props) => {
 
@@ -10,7 +11,6 @@ const ContactList = (props) => {
     }
 
     const renderContactList = props.contacts.map((contact) => {
-        // debugger;
         return(
             <ContactCard contact={contact} clickHandler={deleteContactHandler} key={contact.id}/>
         );
@@ -22,6 +22,7 @@ const ContactList = (props) => {
             <Header as='h2' icon textAlign='center'>
                 Contact List
             </Header>
+            <SearchCM contacts={props.contacts}/>
             <Link to={"/add"}><Button positive>Add Contact +</Button></Link>
             <List divided verticalAlign='middle'>
                 {renderContactList}

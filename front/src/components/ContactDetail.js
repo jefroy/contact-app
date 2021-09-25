@@ -3,7 +3,6 @@ import {Button, Card, Icon, Image} from 'semantic-ui-react'
 import {Link} from "react-router-dom";
 
 const ContactDetail = (props) => {
-    console.log(props);
     let { id, name, email, avatar } = props.location.state.contact;
     return (
         <div className={'main'}>

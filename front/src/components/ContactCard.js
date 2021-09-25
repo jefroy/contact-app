@@ -20,6 +20,9 @@ const ContactCard = (props) => {
             </List.Content>
             <List.Content style={{paddingRight: '70%'}} floated={'right'}>
                 <Icon link name='close' onClick={() => props.clickHandler(id)}/>
+                <Link to={  {pathname: `/edit`, state: {contact: props.contact}}  }>
+                    <Icon link name='edit' />
+                </Link>
             </List.Content>
         </List.Item>
     );

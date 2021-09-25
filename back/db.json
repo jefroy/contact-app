@@ -1,16 +1,16 @@
 {
-    "contacts": [
-        {
-          "id": "8d06605e-c507-4591-9a82-19166f94bfc5",
-          "name": "Jon",
-          "email": "asda@Adsad",
-          "avatar": "https://react.semantic-ui.com/images/avatar/large/christian.jpg"
-        },
-        {
-          "id": "a944520b-a707-4067-83c5-c8f1c4642903",
-          "name": "Harry",
-          "email": "asd@asdasd",
-          "avatar": "https://react.semantic-ui.com/images/avatar/large/steve.jpg"
-        }
-    ]
+  "contacts": [
+    {
+      "id": "f4673781-f97f-41a7-a6bd-56d1fcbe2af6",
+      "name": "asdasd",
+      "email": "adasdasda@asdasd",
+      "avatar": "https://react.semantic-ui.com/images/avatar/large/jenny.jpg"
+    },
+    {
+      "id": "554a8ec4-f429-4fcd-9828-f00aa01c92df",
+      "name": "jonn",
+      "email": "jon@jon",
+      "avatar": "https://react.semantic-ui.com/images/avatar/large/stevie.jpg"
+    }
+  ]
 }

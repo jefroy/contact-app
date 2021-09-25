@@ -34,7 +34,12 @@ const avatarOptions = [
     },
 ]
 
-class AddContact extends React.Component{
+class EditContact extends React.Component{
+    constructor(props) {
+        super(props);
+        const {id, name, email, avatar} = props.location.state.contact;
+        this.state = {id, name, email, avatar};
+    }
     state = {name: '', email: '', avatar: ''}
 
     handleChange = (e, {name, value}) => { // name => name attr from Form, value => value attr from Form
@@ -46,7 +51,7 @@ class AddContact extends React.Component{
     handleSubmit = () => {
         const { name, email, avatar } = this.state
         this.setState({ name: name, email: email , avatar: avatar })
-        this.props.addContactHandler(this.state);
+        this.props.updateContactHandler(this.state);
         this.setState({name: "", email: "", avatar: ""})
         this.props.history.push("/");
     }
@@ -85,21 +90,21 @@ class AddContact extends React.Component{
                         type={'email'}
                         onChange={this.handleChange}
                     />
-                <Form.Select
-                    fluid
-                    name={'avatar'}
-                    label='Avatar 👥'
-                    value={avatar}
-                    options={avatarOptions}
-                    placeholder='Avatar'
-                    onChange={this.handleChange}
-                />
+                    <Form.Select
+                        fluid
+                        name={'avatar'}
+                        label='Avatar 👥'
+                        value={avatar}
+                        options={avatarOptions}
+                        placeholder='Avatar'
+                        onChange={this.handleChange}
+                    />
                 </Form.Group>
-                <Form.Button content='Add Contact' />
+                <Form.Button content='Update Contact' />
             </Form>
         );
     }
 
 }
 
-export default AddContact;
+export default EditContact;

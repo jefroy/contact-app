@@ -7,26 +7,51 @@ import {useState, useEffect} from "react";
 import {uuid} from 'uuidv4';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import ContactDetail from "./ContactDetail";
+import api from "../api/contacts";
+import EditContact from "./EditContact";
 
 function App() {
     const LOCAL_STORAGE_KEY = "contacts";
+
+    const retrieveContacts = async () => {
+        const response = await api.get("/contacts");
+        return response.data;
+    }
+
     // use state stuff
     const [contacts, setContacts] = useState([]);
-    const addContactHandler = (contact) => {
-        console.log(contact);
-        setContacts([...contacts, {id: uuid(), ...contact}]);
+    const addContactHandler = async (contact) => {
+        const request = {
+            id: uuid(),
+            ...contact
+        };
+        const response = await api.post("/contacts", request);
+        setContacts([...contacts, response.data]);
+    }
+    const updateContactHandler = async (contact) => {
+        const response = await api.put(`/contacts/${contact.id}`, contact);
+        const {id, name, email, avatar} = response.data;
+        setContacts(
+            contacts.map((contact) => {
+                return contact.id === id ? {...response.data} : contact;
+            })
+        );
     }
 
     useEffect(() => {
-        const getContacts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-        getContacts ? setContacts(getContacts): setContacts([]);
+        const getAllContacts = async () => {
+            const allContacts = await retrieveContacts();
+            allContacts ? setContacts(allContacts): setContacts([]);
+        }
+        getAllContacts();
     }, []);
 
     useEffect(() => {
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
     }, [contacts]);
 
-    const removeContactHandler = (id) => { // prop filling to get the id from the ContactList comp, which gets it from the ContactCard comp
+    const removeContactHandler = async (id) => { // prop filling to get the id from the ContactList comp, which gets it from the ContactCard comp
+        await api.delete(`/contacts/${id}`);
         const newContactList = contacts.filter((contact) => {
             return contact.id !== id;
         })
@@ -56,6 +81,15 @@ function App() {
                                     <AddContact
                                         {...props}
                                         addContactHandler={addContactHandler}
+                                    />
+                                )}
+                            />
+                            <Route
+                                path={"/edit"}
+                                render={(props) => (
+                                    <EditContact
+                                        {...props}
+                                        updateContactHandler={updateContactHandler}
                                     />
                                 )}
                             />
